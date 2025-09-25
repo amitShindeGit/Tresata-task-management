@@ -21,3 +21,30 @@ export const STATUS_OPTIONS: Option[] = [
     element: <Tag variant="completed" />,
   },
 ];
+
+export const STATUS_FILTER_OPTIONS: Option[] = [
+  {
+    id: 1,
+    label: "All",
+    value: "all",
+    element: <Tag />,
+  },
+  {
+    id: 2,
+    label: "In Progress",
+    value: "in-progress",
+    element: <Tag variant="progress" />,
+  },
+  {
+    id: 3,
+    label: "Pending",
+    value: "pending",
+    element: <Tag variant="pending" />,
+  },
+  {
+    id: 4,
+    label: "Completed",
+    value: "completed",
+    element: <Tag variant="completed" />,
+  },
+];
