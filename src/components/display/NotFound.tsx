@@ -1,15 +1,16 @@
 import { Link } from "react-router";
+import type { NotFoundProps } from "../types";
 
-const NotFound = () => {
+const NotFound = ({ message }: NotFoundProps) => {
   return (
-    <section className="h-screen bg-[#034EA2]">
+    <section className="h-screen bg-gray-700">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-sm text-center">
           <h1 className="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-black dark:text-white">
             404
           </h1>
           <p className="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">
-            Page not found
+            {message ? message : "Page not found"}
           </p>
 
           <Link

@@ -4,6 +4,7 @@ import { TaskContext } from "../utils/context/TaskContext";
 import { useNavigate, useParams } from "react-router";
 import type { Task } from "../utils/types";
 import type { SubmitData } from "../components/types";
+import NotFound from "../components/display/NotFound";
 
 function EditTask() {
   const { tasks, updateTask } = useContext(TaskContext);
@@ -12,7 +13,6 @@ function EditTask() {
   const [currentTask, setCurrentTask] = useState<Task | null>(null);
 
   useEffect(() => {
-    // TODO: handle case when taskId is invalid
     if (tasks.length > 0 && taskId) {
       const currTask = tasks.filter((task) => task.id === taskId);
 
@@ -32,6 +32,10 @@ function EditTask() {
 
     navigate("/");
   };
+
+  if (!currentTask) {
+    return <NotFound message="Task not found" />;
+  }
 
   return (
     <TaskForm

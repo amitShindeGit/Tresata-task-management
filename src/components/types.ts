@@ -43,3 +43,8 @@ export interface SearchBarProps {
   value: string;
   onChange: (val: string) => void;
 }
+
+
+export interface NotFoundProps {
+  message?: string;
+}
