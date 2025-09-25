@@ -1,44 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import { useNavigate } from "react-router";
+import type { TaskStatus } from "../utils/types";
+import Dropdown from "./display/Dropdown";
+import { STATUS_OPTIONS } from "../utils/constants";
+import type { SubmitData, TaskFormProps } from "./types";
 
-interface TaskFormProps {
-  onSubmit: (data: { title: string; description: string }) => void;
-  onCancel?: () => void;
-}
-
-const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+const TaskForm: React.FC<TaskFormProps> = ({
+  title,
+  description,
+  status,
+  onSubmit,
+}) => {
   const navigate = useNavigate();
-  const [descriptionError, setDescriptionError] = useState<string>("");
+  const [currentTitle, setCurrentTitle] = useState(() => title || "");
+  const [currentDescription, setCurrentDescription] = useState(
+    () => description || ""
+  );
+  const [selected, setSelected] = useState<TaskStatus>(status ?? "in-progress");
+  const [descriptionError, setCurrentDescriptionError] = useState<string>("");
+
+  useEffect(() => {
+    setCurrentTitle(title || "");
+    setCurrentDescription(description || "");
+    setSelected(status ?? "in-progress");
+  }, [title, description, status]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (description.trim().length === 0) {
-      setDescriptionError("Description cannot be empty or only spaces");
+    if (currentDescription?.trim().length === 0) {
+      setCurrentDescriptionError("Description cannot be empty or only spaces");
       return;
     }
 
-    const trimmedTitle = title.trim();
-    const trimmedDescription = description.trim();
-    onSubmit({ title: trimmedTitle, description: trimmedDescription });
-    setTitle("");
-    setDescription("");
+    const trimmedTitle = currentTitle?.trim();
+    const trimmedDescription = currentDescription?.trim();
+
+    if (trimmedTitle && trimmedDescription) {
+      let submitData: SubmitData = {
+        title: trimmedTitle,
+        description: trimmedDescription,
+      };
+
+      if (status && selected) {
+        submitData = { ...submitData, status: selected };
+      }
+      onSubmit(submitData);
+      setCurrentTitle("");
+      setCurrentDescription("");
+    }
   };
 
   const handleDescriptionChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const value = e.target.value;
-    setDescription(value);
+    setCurrentDescription(value);
 
     // Validation: must contain at least one non-space character
     if (value.trim().length === 0 && value.length > 0) {
-      setDescriptionError("Description cannot be empty or only spaces");
+      setCurrentDescriptionError("Description cannot be empty or only spaces");
     } else {
-      setDescriptionError("");
+      setCurrentDescriptionError("");
     }
   };
 
@@ -51,8 +75,8 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
         <label>
           <input
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={currentTitle}
+            onChange={(e) => setCurrentTitle(e.target.value)}
             required
             className="w-full p-2 border border-gray-300 rounded mt-1"
             placeholder="Enter the title"
@@ -65,7 +89,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
       <div className="mb-4">
         <label>
           <textarea
-            value={description}
+            value={currentDescription}
             onChange={handleDescriptionChange}
             required
             rows={4}
@@ -78,7 +102,13 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
           )}
         </label>
       </div>
-      <div className="flex justify-between">
+
+      <Dropdown
+        options={STATUS_OPTIONS}
+        value={selected}
+        onChange={(val) => setSelected(val as TaskStatus)}
+      />
+      <div className="mt-4 flex justify-between">
         <Button
           label="Cancel"
           variant="secondary"
@@ -86,7 +116,11 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
           onClick={() => navigate(-1)}
         />
 
-        <Button label="Add" type="submit" onSubmit={onSubmit} />
+        <Button
+          label={title || description ? "Update" : "Add"}
+          type="submit"
+          onSubmit={onSubmit}
+        />
       </div>
     </form>
   );

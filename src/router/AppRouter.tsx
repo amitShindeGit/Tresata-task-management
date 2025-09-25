@@ -3,6 +3,7 @@ import HomePage from "../pages/HomePage";
 import MasterLayout from "../components/display/MasterLayout";
 import NewTask from "../pages/NewTask";
 import NotFound from "../components/display/NotFound";
+import EditTask from "../pages/EditTask";
 
 function AppRouter() {
   return (
@@ -21,6 +22,15 @@ function AppRouter() {
         element={
           <MasterLayout backLink="/" title={"Add Task"}>
             <NewTask />
+          </MasterLayout>
+        }
+      />
+
+      <Route
+        path="/edit/:taskId"
+        element={
+          <MasterLayout backLink="/" title={"Edit Task"}>
+            <EditTask />
           </MasterLayout>
         }
       />

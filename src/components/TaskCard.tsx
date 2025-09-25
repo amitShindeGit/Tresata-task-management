@@ -5,6 +5,19 @@ import Tag from "./display/Tag";
 import type { TaskCardProps } from "./types";
 import { useState } from "react";
 
+const getTaskStatusVariant = (status: string) => {
+  switch (status) {
+    case "in-progress":
+      return "progress";
+    case "pending":
+      return "pending";
+    case "completed":
+      return "completed";
+    default:
+      return "progress";
+  }
+};
+
 function TaskCard({ task, onDelete, onEdit }: TaskCardProps) {
   const { title, description, createdAt } = task;
   const [hovered, setHovered] = useState(false);
@@ -23,7 +36,7 @@ function TaskCard({ task, onDelete, onEdit }: TaskCardProps) {
           </span>
           <div className="w-full flex justify-between">
             <span className="font-bold text-lg text-[#034EA2]">{title}</span>
-            <Tag variant="progress" />
+            <Tag variant={getTaskStatusVariant(task?.status)} />
           </div>
         </div>
 

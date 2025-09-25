@@ -1,10 +1,5 @@
 import React from "react";
-
-type TagVariant = "pending" | "progress" | "completed";
-
-interface TagProps {
-  variant: TagVariant;
-}
+import type { TagProps } from "../types";
 
 const Tag: React.FC<TagProps> = ({ variant }) => {
   switch (variant) {
