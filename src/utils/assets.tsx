@@ -75,3 +75,37 @@ export const DeleteIcon = () => (
     />
   </svg>
 );
+
+export const AddNewTaskIcon = () => (
+  <svg
+    width="70"
+    height="70"
+    viewBox="0 0 70 70"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="35" cy="35" r="35" fill="#034EA2" />
+    <path
+      d="M35 28.5469V42.3281M28.875 35.4375H41.125H28.875Z"
+      stroke="white"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const BackNavIcon = () => (
+  <svg
+    width="27"
+    height="23"
+    viewBox="0 0 27 23"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0.939341 10.5917C0.353554 11.1775 0.353554 12.1272 0.939341 12.713L10.4853 22.2589C11.0711 22.8447 12.0208 22.8447 12.6066 22.2589C13.1924 21.6732 13.1924 20.7234 12.6066 20.1376L4.12132 11.6523L12.6066 3.16706C13.1924 2.58128 13.1924 1.63153 12.6066 1.04574C12.0208 0.459955 11.0711 0.459955 10.4853 1.04574L0.939341 10.5917ZM27 10.1523L2 10.1523V13.1523L27 13.1523V10.1523Z"
+      fill="white"
+    />
+  </svg>
+);

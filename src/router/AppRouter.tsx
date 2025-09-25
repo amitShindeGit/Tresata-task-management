@@ -19,7 +19,7 @@ function AppRouter() {
       <Route
         path="/new"
         element={
-          <MasterLayout title={"Add Task"}>
+          <MasterLayout backLink="/" title={"Add Task"}>
             <NewTask />
           </MasterLayout>
         }

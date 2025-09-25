@@ -4,7 +4,14 @@ interface Props extends ButtonProps {
   variant?: ButtonProps["variant"];
 }
 
-function Button({ label, onClick, disabled, variant = "primary" }: Props) {
+function Button({
+  label,
+  onClick,
+  onSubmit,
+  type,
+  disabled,
+  variant = "primary",
+}: Props) {
   let style = {};
 
   switch (variant) {
@@ -33,7 +40,7 @@ function Button({ label, onClick, disabled, variant = "primary" }: Props) {
   }
 
   return (
-    <button style={style} onClick={onClick} disabled={disabled}>
+    <button style={style} type={type} onClick={onClick} onSubmit={onSubmit} disabled={disabled}>
       {label}
     </button>
   );
