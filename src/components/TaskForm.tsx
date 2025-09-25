@@ -5,6 +5,7 @@ import type { TaskStatus } from "../utils/types";
 import Dropdown from "./display/Dropdown";
 import { STATUS_OPTIONS } from "../utils/constants";
 import type { SubmitData, TaskFormProps } from "./types";
+import { RenderConditional } from "./display/RenderConditional";
 
 const TaskForm: React.FC<TaskFormProps> = ({
   title,
@@ -103,11 +104,13 @@ const TaskForm: React.FC<TaskFormProps> = ({
         </label>
       </div>
 
-      <Dropdown
-        options={STATUS_OPTIONS}
-        value={selected}
-        onChange={(val) => setSelected(val as TaskStatus)}
-      />
+      <RenderConditional check={Boolean(status)}>
+        <Dropdown
+          options={STATUS_OPTIONS}
+          value={selected}
+          onChange={(val) => setSelected(val as TaskStatus)}
+        />
+      </RenderConditional>
       <div className="mt-4 flex justify-between">
         <Button
           label="Cancel"

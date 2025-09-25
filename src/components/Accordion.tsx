@@ -4,9 +4,14 @@ import { AccordionDownArrow, AccordionUpArrow } from "../utils/assets";
 interface AccordionProps {
   title: string;
   children: ReactNode;
+  count: number;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
+const Accordion: React.FC<AccordionProps> = ({
+  title,
+  children,
+  count = 0,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => setIsOpen((prev) => !prev);
@@ -38,7 +43,9 @@ const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
         }}
         aria-expanded={isOpen}
       >
-        <span>{title}</span>
+        <span>
+          {title} (<strong>{count}</strong>)
+        </span>
         <span style={{ marginLeft: 8 }}>
           {isOpen ? <AccordionUpArrow /> : <AccordionDownArrow />}
         </span>
