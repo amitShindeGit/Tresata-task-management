@@ -8,3 +8,10 @@ export interface Task {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface ButtonProps {
+  label: string;
+  variant?: 'primary' | 'secondary';
+  onClick: () => void;
+  disabled?: boolean;
+}

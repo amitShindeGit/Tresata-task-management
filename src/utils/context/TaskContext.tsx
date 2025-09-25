@@ -10,7 +10,12 @@ interface TaskContextType {
     removeTask: (id: string) => void;
 }
 
-export const TaskContext = createContext<TaskContextType | undefined>(undefined);
+export const TaskContext = createContext<TaskContextType>({
+    tasks: [],
+    addTask: () => {},
+    updateTask: () => {},
+    removeTask: () => {},
+});
 
 export const useTaskContext = () => {
     const context = useContext(TaskContext);
