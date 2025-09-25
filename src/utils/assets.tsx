@@ -52,8 +52,8 @@ export const DeleteIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M10.0828 5.37512H1.79216C1.33451 5.37512 0.963501 5.76361 0.963501 6.24283V13.1876C0.963501 14.6259 2.07696 15.7918 3.45048 15.7918H8.42444C9.08403 15.7918 9.7166 15.5174 10.183 15.029C10.6494 14.5407 10.9114 13.8783 10.9114 13.1876V6.24283C10.9114 5.76361 10.5404 5.37512 10.0828 5.37512Z"
       stroke="#E32A34"
       strokeWidth="1.5"
@@ -61,8 +61,8 @@ export const DeleteIcon = () => (
       strokeLinejoin="round"
     />
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M8.92188 3.29173L8.81643 3.07194C8.27118 1.9298 7.15643 1.20831 5.937 1.20831C4.71757 1.20831 3.60282 1.9298 3.05758 3.07194L2.95312 3.29173H8.92188Z"
       stroke="#E32A34"
       strokeWidth="1.5"

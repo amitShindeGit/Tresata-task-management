@@ -1,28 +1,39 @@
 // Core imports
 import { nanoid } from "nanoid";
-import { useState, type ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 
 // Local imports
 import type { Task } from "../types";
 import { TaskContext } from "./TaskContext";
+import { getJsonData, setJsonData } from "../utils";
+
+// Storage utils
+const STORAGE_KEY = "tasks";
 
 export const TaskProvider = ({ children }: { children: ReactNode }) => {
-    const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>(
+    () => getJsonData(STORAGE_KEY) || []
+  );
 
-    const addTask = (task: Omit<Task, "id">) =>
-        setTasks(prev => [...prev, { ...task, id: nanoid() }]);
+  // Persist tasks to localStorage whenever they change
+  useEffect(() => {
+    setJsonData(STORAGE_KEY, tasks);
+  }, [tasks]);
 
-    const updateTask = (updatedTask: Task) =>
-        setTasks(prev =>
-            prev.map(task => (task.id === updatedTask.id ? updatedTask : task))
-        );
+  const addTask = (task: Omit<Task, "id">) =>
+    setTasks((prev) => [...prev, { ...task, id: nanoid() }]);
 
-    const removeTask = (id: string) =>
-        setTasks(prev => prev.filter(task => task.id !== id));
-
-    return (
-        <TaskContext.Provider value={{ tasks, addTask, updateTask, removeTask }}>
-            {children}
-        </TaskContext.Provider>
+  const updateTask = (updatedTask: Task) =>
+    setTasks((prev) =>
+      prev.map((task) => (task.id === updatedTask.id ? updatedTask : task))
     );
+
+  const removeTask = (id: string) =>
+    setTasks((prev) => prev.filter((task) => task.id !== id));
+
+  return (
+    <TaskContext.Provider value={{ tasks, addTask, updateTask, removeTask }}>
+      {children}
+    </TaskContext.Provider>
+  );
 };
