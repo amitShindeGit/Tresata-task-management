@@ -7,7 +7,7 @@ function HomePage() {
   const { tasks } = useContext(TaskContext);
   return (
     <Accordion title="In Progress">
-      <TaskCard tasks={tasks} />
+      <TaskCard task={tasks[0]} onDelete={() => {}} onEdit={() => {}} />
     </Accordion>
   );
 }

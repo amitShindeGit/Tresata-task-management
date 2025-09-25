@@ -1,7 +1,9 @@
 import type { Task } from "../utils/types";
 
 export interface TaskCardProps {
-  tasks: Task[];
+  task: Task;
+  onDelete: (id: string) => void;
+  onEdit: (id: string) => void;
 }
 
 export interface CollapsibleCardWrapperProps {
