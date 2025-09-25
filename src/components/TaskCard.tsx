@@ -35,7 +35,13 @@ function TaskCard({ task, onDelete, onEdit }: TaskCardProps) {
             {title.charAt(0).toUpperCase()}
           </span>
           <div className="w-full flex justify-between">
-            <span className="font-bold text-lg text-[#034EA2]">{title}</span>
+            <span
+              className={`font-bold text-lg text-[#034EA2] ${
+                task?.status === "completed" ? "line-through" : ""
+              }`}
+            >
+              {title}
+            </span>
             <Tag variant={getTaskStatusVariant(task?.status)} />
           </div>
         </div>

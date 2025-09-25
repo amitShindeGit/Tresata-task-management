@@ -23,7 +23,7 @@ export interface Option {
 type TagVariant = "pending" | "progress" | "completed";
 
 export interface TagProps {
-  variant: TagVariant;
+  variant?: TagVariant;
 }
 
 export interface SubmitData {
@@ -37,4 +37,9 @@ export interface TaskFormProps {
   status?: TaskStatus;
   onSubmit: (data: SubmitData) => void;
   onCancel?: () => void;
+}
+
+export interface SearchBarProps {
+  value: string;
+  onChange: (val: string) => void;
 }

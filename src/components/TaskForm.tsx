@@ -80,7 +80,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
             onChange={(e) => setCurrentTitle(e.target.value)}
             required
             className="w-full p-2 border border-gray-300 rounded mt-1"
-            placeholder="Enter the title"
+            placeholder="Enter the title (max 100 characters)"
             maxLength={100}
             pattern=".*\S.*"
             title="Title cannot be empty or only spaces"
@@ -95,7 +95,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
             required
             rows={4}
             className="w-full p-2 border border-gray-300 rounded mt-1"
-            placeholder="Enter the description"
+            placeholder="Enter the description (max 500 characters)"
             maxLength={500}
           />
           {descriptionError && (

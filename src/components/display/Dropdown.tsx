@@ -36,7 +36,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, value, onChange }) => {
       </button>
 
       {isOpen && (
-        <ul className="absolute p-4 w-full bg-white border border-gray-300 rounded mt-1 max-h-60 overflow-y-auto z-10">
+        <ul className="absolute p-2 w-full bg-white border border-gray-300 rounded mt-1 max-h-60 overflow-y-auto z-10">
           {options.map((opt) => (
             <li
               key={opt.id}

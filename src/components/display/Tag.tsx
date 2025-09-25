@@ -24,8 +24,14 @@ const Tag: React.FC<TagProps> = ({ variant }) => {
           Completed
         </span>
       );
+
     default:
-      return null;
+      return (
+        <span className="inline-flex items-center">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#034EA2] mr-1.5" />
+          All
+        </span>
+      );
   }
 };
 
