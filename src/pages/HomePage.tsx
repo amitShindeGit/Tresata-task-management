@@ -7,7 +7,7 @@ import { TaskContext } from "../utils/context/TaskContext";
 import { RenderConditional } from "../components/display/RenderConditional";
 
 function HomePage() {
-  const { tasks } = useContext(TaskContext);
+  const { tasks, removeTask } = useContext(TaskContext);
   const navigate = useNavigate();
 
   const inProgressTasks = useMemo(() => {
@@ -48,7 +48,7 @@ function HomePage() {
             <TaskCard
               key={task.id}
               task={task}
-              onDelete={() => {}}
+              onDelete={() => removeTask(task.id)}
               onEdit={() => navigate(`/edit/${task?.id}`)}
             />
           ))}
@@ -61,7 +61,7 @@ function HomePage() {
             <TaskCard
               key={task.id}
               task={task}
-              onDelete={() => {}}
+              onDelete={() => removeTask(task.id)}
               onEdit={() => navigate(`/edit/${task?.id}`)}
             />
           ))}
@@ -74,7 +74,7 @@ function HomePage() {
             <TaskCard
               key={task.id}
               task={task}
-              onDelete={() => {}}
+              onDelete={() => removeTask(task.id)}
               onEdit={() => navigate(`/edit/${task?.id}`)}
             />
           ))}
